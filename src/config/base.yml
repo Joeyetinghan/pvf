@@ -1,0 +1,25 @@
+paths:
+  base_dir: "."
+  artifacts_root: "z_artifacts"
+  cache_root: "z_artifacts/.cache"
+  hf_home: "z_artifacts/.hf_cache"
+  hf_datasets_cache: "z_artifacts/.hf_cache/datasets"
+  hf_hub_cache: "z_artifacts/.hf_cache/hub"
+  tmp_dir: "z_artifacts/.tmp"
+
+slurm:
+  account: "CHANGE_ME"
+  ntasks: 1
+  cpus_per_task: 4
+  partition: "gpu-h100,gpu-h200"
+  constraint: "H200|H100"
+  gres: "gpu:1"
+  mem: "128gb"
+  time: "02:00:00"
+  queue: "embers"
+  setup_commands:
+    - "eval \"$(conda shell.bash hook)\""
+    - "module load cuda"
+    - "module load cudnn"
+    - "module load nvhpc-nccl"
+    - "conda activate pvf"

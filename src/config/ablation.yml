@@ -1,0 +1,61 @@
+model:
+  model_type: "llada"
+  model_name: "GSAI-ML/LLaDA-8B-Instruct"
+  local_model_path: null
+  mask_token_id: 126336  # resolved from tokenizer; override only if tokenizer lacks mask_token_id
+  priority_words: null
+
+generation:
+  gen_length: 512
+  block_length: 64
+  temperature: 0.0
+  cfg_scale: 0.0
+  confidence_threshold: 0.9
+  confidence_filter_threshold: 0.1
+  hub_strategy: "heuristic"
+  priority_confidence_threshold: 0.1
+  priority_batch_inference: true
+  priority_batch_num: 1
+  priority_batch_mode: "individual"
+  priority_selection_criterion: "confidence_sum"
+  unlock_next_block_threshold: 0
+  priority_confidence_upper_bound: 0.6
+  high_conf_topk: null
+
+ablation:
+  ablation_comparison: 1
+  priority_pick_strategy: "random"
+  datasets: ["gsm8k"]
+  seeds: [42]
+  comparison_values: [1]
+
+run:
+  dataset_name: "gsm8k"
+  seed: 42
+  start_idx: 0
+  end_idx: 1300
+  num_samples: null
+  output_dir: "z_artifacts/ablation/default"
+  timestamp: null
+
+submit:
+  job_name_prefix: "llada_ablation"
+  output_root: "z_artifacts/ablation"
+  base_start_idx: 0
+  base_end_idx: 1300
+  chunk_size: 100
+  dataset_sizes:
+    gsm8k: 1319
+    math: 5000
+    mmlu: 14042
+    mmlu_pro: 12032
+    humaneval: 164
+  max_jobs_in_queue: 40
+  wait_time_seconds: 600
+
+slurm:
+  partition: "gpu-h200,gpu-h100,gpu-a100"
+  constraint: "H200|H100|A100"
+  setup_commands:
+    - "eval \"$(conda shell.bash hook)\""
+    - "conda activate llada"

@@ -1,0 +1,55 @@
+model:
+  # model_type: "dream"
+  # model_name: "Dream-org/Dream-v0-Instruct-7B"
+  model_type: "llada"
+  model_name: "GSAI-ML/LLaDA-8B-Instruct"
+  local_model_path: null
+  # mask_token_id: null  # resolved from tokenizer; override only if tokenizer lacks mask_token_id
+  mask_token_id: 126336
+  priority_words: null
+
+generation:
+  gen_length: 512
+  block_length: 64
+  temperature: 0.0
+  cfg_scale: 0.0
+  confidence_threshold: 0.9
+  confidence_filter_threshold: 0.99
+  hub_strategy: "heuristic"
+  priority_confidence_threshold: 0.99
+  cumulative_fallback: true
+  cumulative_fallback_num: 3
+  cumulative_fallback_order: "position"
+  priority_batch_inference: true
+  priority_batch_num: 3
+  priority_batch_mode: "individual"
+  priority_selection_criterion: "confidence_sum"
+  unlock_next_block_threshold: 0
+  priority_confidence_upper_bound: 0.9
+  high_conf_topk: null
+  show_token_labels: false
+  skip_priority_verification: false
+
+run:
+  dataset_name: "gsm8k"
+  seed: 42
+  start_idx: 0
+  end_idx: null
+  output_dir: "${submit.output_root}/${model.model_type}/${run.dataset_name}/GL-${generation.gen_length}/BL-${generation.block_length}/${submit.experiment_tag}"
+  timestamp: null
+
+submit:
+  base_start_idx: 0
+  base_end_idx: null
+  num_chunks: 8
+  output_root: "z_artifacts"
+  experiment_tag: "baseline"
+  job_name_prefix: "dream_eval"
+  dataset_sizes:
+    gsm8k: 1319
+    math: 5000
+    mmlu: 14042
+    mmlu_pro: 12032
+    humaneval: 164
+    arc_c: 1172
+    winogrande: 1267
