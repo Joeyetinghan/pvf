@@ -1,13 +1,10 @@
 ## Plan, Verify and Fill: A Structured Parallel Decoding Approach for Diffusion Language Models
 
-This repo contains the code for the paper [**Plan, Verify and Fill: A Structured Parallel Decoding Approach for Diffusion Language Models**](https://arxiv.org/abs/2601.12247).  
-A local copy of the paper is available at [`assets/pvf`](assets/pvf_Jan-29-2026.pdf).
+This repository contains the code for the submission **Plan, Verify and Fill: A Structured Parallel Decoding Approach for Diffusion Language Models**.
 
 ## Project Status
 
-This repo is a **work in progress** and will continue to be updated.  
-It is not polished yet, so you may run into rough edges or missing pieces.  
-If you hit any issues or have questions, please open a GitHub issue — we’re happy to follow up and improve things over time.
+This is research code prepared for anonymous review. It is functional but still has a few rough edges and convenience gaps.
 
 
 ## Repository Tree
@@ -18,10 +15,11 @@ The tree below focuses on the codebase and excludes paths listed in `.gitignore`
 .
 ├── LICENSE
 ├── README.md
+├── env.yml
 ├── pyproject.toml
 ├── assets/
-│   ├── commit_behavior.gif
-│   └── pvf_Jan-29-2026.pdf
+│   ├── confidence_based.gif
+│   └── pvf_style.gif
 └── src/
     ├── __init__.py
     ├── eval.py
@@ -57,7 +55,7 @@ The tree below focuses on the codebase and excludes paths listed in `.gitignore`
 - `src/dataset/`: dataset adapters, prompt formatting, and accuracy computation.
 - `src/vis.py`: visualization utility for commit behavior GIFs.
 - `src/utils.py`: config loading/merging, runtime paths, logging, timestamped output directories.
-- `assets/`: paper PDF and example visualization artifact.
+- `assets/`: example visualization artifacts used in the README.
 
 ## Typical Workflow
 
